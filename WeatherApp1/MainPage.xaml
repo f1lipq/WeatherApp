@@ -3,346 +3,133 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp1.MainPage"
              BackgroundImageSource="backgroundimage.png"
-             Title=""
-             >
+             Title="">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Margin="0, 70, 0, 0"
-            >
-            <VerticalStackLayout
-                Padding="30, 0">
-                
+    <!-- Grid pod calosc + nav tab na dole -->
+    <Grid RowDefinitions="*, Auto">
 
-            <HorizontalStackLayout HorizontalOptions="Center">
-                <Label Text="Montreal" FontFamily="PixelFont" TextColor="White" FontSize="40"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout HorizontalOptions="Center">
-                    <Label Text="19℃" TextColor="White" FontSize="40" FontFamily="PixelFont"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout HorizontalOptions="Center">
-                    <Label Text="Mostly Clear" TextColor="Grey" FontFamily="PixelFont"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout HorizontalOptions="Center" Margin="0, 0, 0, 40" Spacing="20">
-                    <Label Text="H:24℃" TextColor="White" FontFamily="PixelFont"/>
-                    <Label Text="L:18℃" TextColor="White" FontFamily="PixelFont"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout HorizontalOptions="Center">
-                <Image Source="house.png" HeightRequest="350" WidthRequest="350"/>
-            </HorizontalStackLayout>
+        <!-- ScrollView z całą zawartością -->
+        <ScrollView Grid.Row="0" Grid.RowSpan="2">
+            <VerticalStackLayout Spacing="25" Margin="0, 70, 0, 0">
+
+                <VerticalStackLayout Padding="30, 0">
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Label Text="Montreal" FontFamily="PixelFont" TextColor="White" FontSize="40"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Label Text="19℃" TextColor="White" FontSize="40" FontFamily="PixelFont"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Label Text="Mostly Clear" TextColor="Grey" FontFamily="PixelFont"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout HorizontalOptions="Center" Margin="0, 0, 0, 40" Spacing="20">
+                        <Label Text="H:24℃" TextColor="White" FontFamily="PixelFont"/>
+                        <Label Text="L:18℃" TextColor="White" FontFamily="PixelFont"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Image Source="house.png" HeightRequest="350" WidthRequest="350"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+                <Border StrokeThickness="4"
+                        Stroke="#E61F1D47"
+                        Padding="20"
+                        HeightRequest="600"
+                        Margin="0, -70, 0, 0">
+
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#E695ABD9" Offset="0" />
+                            <GradientStop Color="#E61F1D47" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="30"/>
+                    </Border.StrokeShape>
+
+                    <Border.Shadow>
+                        <Shadow Brush="Black" 
+                                Opacity="0.4" 
+                                Radius="25" 
+                                Offset="0,10"/>
+                    </Border.Shadow>
+
+                    <VerticalStackLayout>
+                        <Border BackgroundColor="#D11F1D47" Margin="0, 0, 0, 20">
+                            <HorizontalStackLayout HorizontalOptions="Center" Spacing="50">
+                                <Button Text="Hourly Forecast" 
+                                        TextColor="White"
+                                        BackgroundColor="Transparent"
+                                        FontFamily="PixelFont"/>
+                                <Button Text="Weekly Forecast" 
+                                        TextColor="White"
+                                        BackgroundColor="Transparent"
+                                        FontFamily="PixelFont"/>
+                            </HorizontalStackLayout>
+                        </Border>
+
+                        <CollectionView ItemsSource="{Binding HourlyWeather}"
+                                        HeightRequest="140"
+                                        HorizontalScrollBarVisibility="Never">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                            </CollectionView.ItemsLayout>
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border HeightRequest="120"
+                                            WidthRequest="60"
+                                            Stroke="#1F1D47"
+                                            StrokeThickness="3"
+                                            Margin="5,0">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                <GradientStop Color="#E65A6490" Offset="0" />
+                                                <GradientStop Color="#E61F1D47" Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="60"/>
+                                        </Border.StrokeShape>
+
+                                        <VerticalStackLayout VerticalOptions="Center" Margin="0, 10, 0, 10">
+                                            <Label Text="{Binding Time}" 
+                                                   HorizontalTextAlignment="Center"
+                                                   TextColor="White"
+                                                   FontFamily="PixelFont"/>
+                                            <Image Source="{Binding Icon}" 
+                                                   HeightRequest="50" 
+                                                   WidthRequest="50"/>
+                                            <Label Text="{Binding Temperature}" 
+                                                   HorizontalTextAlignment="Center"
+                                                   TextColor="White"
+                                                   FontFamily="PixelFont"/>
+                                        </VerticalStackLayout>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                    </VerticalStackLayout>
+                </Border>
 
             </VerticalStackLayout>
-            
-            
-            <Border StrokeThickness="4"
-                    Stroke="#E61F1D47"
-                    Padding="20"
-                    HeightRequest="600"
-                    Margin="0, -70, 0, 0">
-                
-                <!-- Wlasciwosci border -->
-                
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#E695ABD9" Offset="0" />
-                        <GradientStop Color="#E61F1D47" Offset="1" />
-                    </LinearGradientBrush>
-                </Border.Background>
-                
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="30"/>
-                </Border.StrokeShape>
+        </ScrollView>
 
-                <Border.Shadow>
-                    <Shadow Brush="Black" 
-                            Opacity="0.4" 
-                            Radius="25" 
-                            Offset="0,10"/>
-                </Border.Shadow>
-                
-                <!-- Koniec -->
+        <!--Navigation tab-->
+        <HorizontalStackLayout Grid.Row="1" 
+                               HorizontalOptions="Center" 
+                               Padding="10"
+                               
+                               BackgroundColor="#80000000">
+            <Button Text="TXT 1" 
+                    BackgroundColor="#1F1D47"
+                    TextColor="White"
+                    FontFamily="PixelFont"
+                    WidthRequest="200"/>
+        </HorizontalStackLayout>
 
-                <VerticalStackLayout>
-                    <Border BackgroundColor="#D11F1D47"
-                            Margin="0, 0, 0, 20">
-                        <HorizontalStackLayout HorizontalOptions="Center"
-                                           Spacing="50"
-                                           >
-                            <Button Text="Hourly Forecast" 
-                                   TextColor="White"
-                                    BackgroundColor="Transparent"
-                                    FontFamily="PixelFont"/>
-                            <Button Text="Weekly Forecast" 
-                                   TextColor="White"
-                                    BackgroundColor="Transparent"
-                                    FontFamily="PixelFont"/>
-                        </HorizontalStackLayout>
-                    </Border>
-                    <!-- UWAGA, TUTAJ ZACZYNA SIE CZESC KTORA TRZEBA SKROCIC PETLA, POLACZONA Z SQLITE. TA CZESC (obecnie) TRWA DO LINI 331 -->
-                    <ScrollView Orientation="Horizontal">
-                        <HorizontalStackLayout x:Name="WeatherContainer" 
-                              Spacing="10" 
-                              Padding="10">
-                            <!-- BOX 1 -->
-                            <!-- NIE POTRZEBNE JUZ
-                        <Border HorizontalOptions="Center"
-                                VerticalOptions="Center"
-                                HeightRequest="120"
-                                WidthRequest="60"
-                                Stroke="#1F1D47"
-                                StrokeThickness="3"
-                                >
-
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#E65A6490" Offset="0" />
-                                    <GradientStop Color="#E61F1D47" Offset="1" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="60"/>
-                            </Border.StrokeShape>
-                            <VerticalStackLayout VerticalOptions="Center"
-                                                 Margin="0, 10, 0, 10">
-                                <Label Text="12 AM" 
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="White"/>
-
-                                <Image Source="weathericonnight1.png" 
-                                       HeightRequest="50" 
-                                       WidthRequest="50"
-                                       />
-
-                                <Label Text="19℃" 
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="White"/>
-                            </VerticalStackLayout>
-                        </Border>
-
-                        <Border HorizontalOptions="Center"
-                                VerticalOptions="Center"
-                                HeightRequest="120"
-                                WidthRequest="60"
-                                Stroke="#1F1D47"
-                                StrokeThickness="3"
-                                >
-
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#E65A6490" Offset="0" />
-                                    <GradientStop Color="#E61F1D47" Offset="1" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="60"/>
-                            </Border.StrokeShape>
-                            <VerticalStackLayout VerticalOptions="Center"
-                                                 Margin="0, 10, 0, 10">
-                                <Label Text="12 AM" 
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="White"/>
-
-                                <Image Source="weathericonnight1.png" 
-                                       HeightRequest="50" 
-                                       WidthRequest="50"
-                                       />
-
-                                <Label Text="19℃" 
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="White"/>
-                            </VerticalStackLayout>
-                        </Border>
-
-                        <Border HorizontalOptions="Center"
-                                VerticalOptions="Center"
-                                HeightRequest="120"
-                                WidthRequest="60"
-                                Stroke="#1F1D47"
-                                StrokeThickness="3"
-                                >
-
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#E65A6490" Offset="0" />
-                                    <GradientStop Color="#E61F1D47" Offset="1" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="60"/>
-                            </Border.StrokeShape>
-                            <VerticalStackLayout VerticalOptions="Center"
-                                                 Margin="0, 10, 0, 10">
-                                <Label Text="12 AM" 
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="White"/>
-
-                                <Image Source="weathericonnight1.png" 
-                                       HeightRequest="50" 
-                                       WidthRequest="50"
-                                       />
-
-                                <Label Text="19℃" 
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="White"/>
-                            </VerticalStackLayout>
-                        </Border>
-
-                        <Border HorizontalOptions="Center"
-                                VerticalOptions="Center"
-                                HeightRequest="120"
-                                WidthRequest="60"
-                                Stroke="#1F1D47"
-                                StrokeThickness="3"
-                                >
-
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#E65A6490" Offset="0" />
-                                    <GradientStop Color="#E61F1D47" Offset="1" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="60"/>
-                            </Border.StrokeShape>
-                            <VerticalStackLayout VerticalOptions="Center"
-                                                 Margin="0, 10, 0, 10">
-                                <Label Text="12 AM" 
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="White"/>
-
-                                <Image Source="weathericonnight1.png" 
-                                       HeightRequest="50" 
-                                       WidthRequest="50"
-                                       />
-
-                                <Label Text="19℃" 
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="White"/>
-                            </VerticalStackLayout>
-                        </Border>
-                            <Border HorizontalOptions="Center"
-                                VerticalOptions="Center"
-                                HeightRequest="120"
-                                WidthRequest="60"
-                                Stroke="#1F1D47"
-                                StrokeThickness="3"
-                                >
-
-                                <Border.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                        <GradientStop Color="#E65A6490" Offset="0" />
-                                        <GradientStop Color="#E61F1D47" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Border.Background>
-
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="60"/>
-                                </Border.StrokeShape>
-                                <VerticalStackLayout VerticalOptions="Center"
-                                                 Margin="0, 10, 0, 10">
-                                    <Label Text="12 AM" 
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="White"/>
-
-                                    <Image Source="weathericonnight1.png" 
-                                       HeightRequest="50" 
-                                       WidthRequest="50"
-                                       />
-
-                                    <Label Text="19℃" 
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="White"/>
-                                </VerticalStackLayout>
-                            </Border>
-                            <Border HorizontalOptions="Center"
-                                VerticalOptions="Center"
-                                HeightRequest="120"
-                                WidthRequest="60"
-                                Stroke="#1F1D47"
-                                StrokeThickness="3"
-                                >
-
-                                <Border.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                        <GradientStop Color="#E65A6490" Offset="0" />
-                                        <GradientStop Color="#E61F1D47" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Border.Background>
-
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="60"/>
-                                </Border.StrokeShape>
-                                <VerticalStackLayout VerticalOptions="Center"
-                                                 Margin="0, 10, 0, 10">
-                                    <Label Text="12 AM" 
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="White"/>
-
-                                    <Image Source="weathericonnight1.png" 
-                                       HeightRequest="50" 
-                                       WidthRequest="50"
-                                       />
-
-                                    <Label Text="19℃" 
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="White"/>
-                                </VerticalStackLayout>
-                            </Border>
-
-                            <Border HorizontalOptions="Center"
-                                VerticalOptions="Center"
-                                HeightRequest="120"
-                                WidthRequest="60"
-                                Stroke="#1F1D47"
-                                StrokeThickness="3"
-                                >
-
-                                <Border.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                        <GradientStop Color="#E65A6490" Offset="0" />
-                                        <GradientStop Color="#E61F1D47" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Border.Background>
-
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="60"/>
-                                </Border.StrokeShape>
-                                <VerticalStackLayout VerticalOptions="Center"
-                                                 Margin="0, 10, 0, 10">
-                                    <Label Text="12 AM" 
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="White"/>
-
-                                    <Image Source="weathericonnight1.png" 
-                                       HeightRequest="50" 
-                                       WidthRequest="50"
-                                       />
-
-                                    <Label Text="19℃" 
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="White"/>
-                                </VerticalStackLayout>
-                            </Border>
-                            -->
-
-                        </HorizontalStackLayout>
-                    </ScrollView>
-                    <!-- KONIEC CZĘŚCI DO SKRÓCENIA -->
-                </VerticalStackLayout>
-            </Border>
-
-            
-            
-        </VerticalStackLayout>
-    </ScrollView>
-
-    <HorizontalStackLayout>
-            
-    </HorizontalStackLayout>
+    </Grid>
 
 </ContentPage>
