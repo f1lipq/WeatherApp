@@ -111,6 +111,58 @@
                             </CollectionView.ItemTemplate>
                         </CollectionView>
 
+                        <Grid WidthRequest="350">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    Stroke="#1F1D47"
+                                    StrokeThickness="3"
+                                    Margin="10"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Fill"
+                                    >
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#E65A6490" Offset="0" />
+                                        <GradientStop Color="#E61F1D47" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="30"/>
+                                </Border.StrokeShape>
+                                <VerticalStackLayout>
+                                    
+                                <Label Text="Air condiction" 
+                                       Grid.Row="0"
+                                       Grid.Column="0"
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="Center"
+                                       FontSize="18"
+                                       TextColor="White"/>
+
+                                <Label Text="3-Low Health Risk"
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="Center"
+                                       FontSize="18"
+                                       TextColor="White"/>
+                                    
+                                </VerticalStackLayout>
+                            </Border>
+                        </Grid>
+
                     </VerticalStackLayout>
                 </Border>
 
@@ -118,17 +170,42 @@
         </ScrollView>
 
         <!--Navigation tab-->
-        <HorizontalStackLayout Grid.Row="1" 
-                               HorizontalOptions="Center" 
-                               Padding="10"
-                               
-                               BackgroundColor="#80000000">
-            <Button Text="TXT 1" 
-                    BackgroundColor="#1F1D47"
-                    TextColor="White"
-                    FontFamily="PixelFont"
-                    WidthRequest="200"/>
-        </HorizontalStackLayout>
+        <Grid Grid.Row="1" 
+              ColumnDefinitions="*, *, *"
+              Padding="10"
+              HeightRequest="80"
+              BackgroundColor="#CC48319D">
+
+            <Button Grid.Column="0"
+            ImageSource="map.png"
+            WidthRequest="50"
+            BackgroundColor="Transparent"
+            HorizontalOptions="Center"/>
+
+            <Button Grid.Column="1"
+            ImageSource="addsymbol.png"
+            BackgroundColor="White"
+            CornerRadius="100"
+            HeightRequest="60"
+            WidthRequest="60"
+            HorizontalOptions="Center"
+            BorderColor="#2E335A">
+                <Button.Shadow>
+                    <Shadow Brush="Black"
+                Opacity="0.7"
+                Radius="20"
+                Offset="0,5"/>
+                </Button.Shadow>
+            </Button>
+
+
+            <Button Grid.Column="2"
+            ImageSource="weathers.png"
+            WidthRequest="50"
+            BackgroundColor="Transparent"
+            HorizontalOptions="Center"/>
+
+        </Grid>
 
     </Grid>
 
