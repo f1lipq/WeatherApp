@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherApp1.Views.AllWeathers"
+             BackgroundColor="#1F1D47"
+             Title=""
+             >
+
+    <Grid RowDefinitions="*, Auto">
+        <ScrollView Grid.Row="0" 
+            Grid.RowSpan="2"
+            Padding="0, 0, 0, 100">
+
+            <VerticalStackLayout Spacing="25" Margin="0, 70, 0, 0">
+                <HorizontalStackLayout>
+                    <Button Text="&lt;"
+                                TextColor="White"
+                                FontFamily="PixelFont"
+                                Clicked="GoToMainPage"/>
+                    <Label Text="Weathers"
+                               TextColor="White"
+                               FontFamily="PixelFont"/>
+                </HorizontalStackLayout>
+                <Grid ColumnDefinitions="*"
+                      RowDefinitions="*, *, *"
+                      ColumnSpacing="15"
+                      RowSpacing="15"
+                      Margin="30, 0, 30, 0">
+
+                    <CollectionView BackgroundColor="#48319D"
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            HeightRequest="150">
+
+                    </CollectionView>
+                    <CollectionView ItemsSource="{Binding HourlyWeather}"
+                HeightRequest="140"
+                HorizontalScrollBarVisibility="Never">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border HeightRequest="120"
+                    WidthRequest="60"
+                    Stroke="#1F1D47"
+                    StrokeThickness="3"
+                    Margin="5,0">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#E65A6490" Offset="0" />
+                                            <GradientStop Color="#E61F1D47" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="60"/>
+                                    </Border.StrokeShape>
+
+                                    <VerticalStackLayout VerticalOptions="Center" Margin="0, 10, 0, 10">
+                                        <Label Text="{Binding Time}" 
+                           HorizontalTextAlignment="Center"
+                           TextColor="White"
+                           FontFamily="PixelFont"/>
+                                        <Image Source="{Binding Icon}" 
+                           HeightRequest="50" 
+                           WidthRequest="50"/>
+                                        <Label Text="{Binding Temperature}" 
+                           HorizontalTextAlignment="Center"
+                           TextColor="White"
+                           FontFamily="PixelFont"/>
+                                    </VerticalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    
+                    
+
+
+                </Grid>
+            </VerticalStackLayout>
+
+        </ScrollView>
+    </Grid>
+</ContentPage>
