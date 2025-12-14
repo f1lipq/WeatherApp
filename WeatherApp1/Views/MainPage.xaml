@@ -4,6 +4,7 @@
              x:Class="WeatherApp1.Views.MainPage"
              BackgroundImageSource="backgroundimage.png"
              Title=""
+             Shell.NavBarIsVisible="False"
              >
 
     <!-- Grid pod calosc + nav tab na dole -->
@@ -157,9 +158,9 @@
                                     </Grid>
                                 </VerticalStackLayout>
                             </Border>
-                            
+
                             <!-- Bloki -->
-                            
+
                             <!-- Pierwszy kafelek -->
 
                             <Grid ColumnDefinitions="*, *"
@@ -309,7 +310,7 @@
                                 </Border>
 
                             </Grid>
-                            
+
                         </VerticalStackLayout>
 
                     </VerticalStackLayout>
@@ -317,16 +318,29 @@
 
             </VerticalStackLayout>
         </ScrollView>
-        
-        
 
-        <!--Navigation tab-->
-        <Grid Grid.Row="1" 
-              ColumnDefinitions="*, *, *"
+
+        <Border Grid.Row="1" 
               Padding="10"
-              HeightRequest="80"
-              BackgroundColor="#CC48319D">
-
+              HeightRequest="60"
+              WidthRequest="60"
+              HorizontalOptions="End"
+              Margin="0, 0, 30, 20"
+              BackgroundColor="#DD48319D">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20"/>
+            </Border.StrokeShape>
+            <!--Navigation tab
+            <Grid Grid.Row="1" 
+              ColumnDefinitions="*"
+              Padding="10"
+              HeightRequest="60"
+              WidthRequest="60"
+              HorizontalOptions="End"
+              Margin="0, 0, 30, 20"
+              BackgroundColor="#EE48319D"
+              > -->
+                <!--
             <Button Grid.Column="0"
             ImageSource="map.png"
             WidthRequest="50"
@@ -348,17 +362,18 @@
                 Offset="0,5"/>
                 </Button.Shadow>
             </Button>
+            -->
 
-
-            <Button Grid.Column="2"
+                <Button Grid.Column="2"
             ImageSource="weathers.png"
             WidthRequest="50"
             BackgroundColor="Transparent"
             HorizontalOptions="Center"
-            Clicked="GoToAllWeathers"/>
+            Clicked="GoToAllWeathers"
+            CornerRadius="20"/>
 
-        </Grid>
-
+            <!--</Grid>-->
+        </Border>
     </Grid>
 
 </ContentPage>
