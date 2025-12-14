@@ -31,7 +31,7 @@
                         <Label Text="L:18℃" TextColor="White" FontFamily="PixelFont"/>
                     </HorizontalStackLayout>
                     <HorizontalStackLayout HorizontalOptions="Center">
-                        <Image Source="house.png" HeightRequest="350" WidthRequest="350"/>
+                        <Image Source="pixel_house.png" HeightRequest="350" WidthRequest="350"/>
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
 
@@ -89,7 +89,7 @@
                                         <Border.Background>
                                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                                 <GradientStop Color="#E65A6490" Offset="0" />
-                                                <GradientStop Color="#E61F1D47" Offset="1" />
+                                                <GradientStop Color="#E6496F94" Offset="1" />
                                             </LinearGradientBrush>
                                         </Border.Background>
                                         <Border.StrokeShape>
@@ -366,7 +366,8 @@
 
                 <Button Grid.Column="2"
             ImageSource="weathers.png"
-            WidthRequest="50"
+            WidthRequest="60"
+            HeightRequest="60"
             BackgroundColor="Transparent"
             HorizontalOptions="Center"
             Clicked="GoToAllWeathers"

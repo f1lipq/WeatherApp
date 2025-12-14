@@ -116,15 +116,16 @@
         <Border Grid.Row="1" 
               Padding="10"
               HeightRequest="60"
-              WidthRequest="60"
-              HorizontalOptions="End"
-              Margin="0, 0, 30, 20"
+              WidthRequest="350"
+              HorizontalOptions="Center"
+                Margin="0, 0, 0, 20"
               BackgroundColor="#DD48319D">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="20"/>
             </Border.StrokeShape>
             <Entry Placeholder="Search for a city..." 
-               FontFamily="PixelFont"/>
+               FontFamily="PixelFont"
+               x:Name="CityName"/>
         </Border>
     </Grid>
 </ContentPage>

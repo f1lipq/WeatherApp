@@ -32,16 +32,30 @@ namespace WeatherApp1.Views
 
             HourlyWeather = new ObservableCollection<WeatherHourly>
             {
-                new WeatherHourly { Time = "12 AM", Icon = "weathericonnight1.png", Temperature = "19℃" },
-                new WeatherHourly { Time = "1 AM", Icon = "weathericonnight1.png", Temperature = "18℃" },
-                new WeatherHourly { Time = "2 AM", Icon = "weathericonnight1.png", Temperature = "17℃" },
-                new WeatherHourly { Time = "3 AM", Icon = "weathericonnight1.png", Temperature = "16℃" },
-                new WeatherHourly { Time = "4 AM", Icon = "weathericonnight1.png", Temperature = "16℃" },
-                new WeatherHourly { Time = "5 AM", Icon = "weathericonnight1.png", Temperature = "17℃" },
-                new WeatherHourly { Time = "6 AM", Icon = "weathericonnight1.png", Temperature = "19℃" },
-                new WeatherHourly { Time = "7 AM", Icon = "weathericonnight1.png", Temperature = "21℃" },
-                new WeatherHourly { Time = "8 AM", Icon = "weathericonnight1.png", Temperature = "23℃" },
-                new WeatherHourly { Time = "9 AM", Icon = "weathericonnight1.png", Temperature = "25℃" }
+                new WeatherHourly { Time = "1 AM", Icon = "pixel_moon.png", Temperature = "18℃" },
+                new WeatherHourly { Time = "2 AM", Icon = "pixel_moon.png", Temperature = "17℃" },
+                new WeatherHourly { Time = "3 AM", Icon = "pixel_moon.png", Temperature = "16℃" },
+                new WeatherHourly { Time = "4 AM", Icon = "pixel_moon.png", Temperature = "16℃" },
+                new WeatherHourly { Time = "5 AM", Icon = "pixel_moon.png", Temperature = "17℃" },
+                new WeatherHourly { Time = "6 AM", Icon = "pixel_cloud_rain.png", Temperature = "19℃" },
+                new WeatherHourly { Time = "7 AM", Icon = "pixel_cloud_rain.png", Temperature = "21℃" },
+                new WeatherHourly { Time = "8 AM", Icon = "pixel_cloud_rain.png", Temperature = "23℃" },
+                new WeatherHourly { Time = "9 AM", Icon = "pixel_clouds.png", Temperature = "25℃" },
+                new WeatherHourly { Time = "10 AM", Icon = "pixel_cloud_rain.png", Temperature = "19℃" },
+                new WeatherHourly { Time = "11 AM", Icon = "pixel_cloud_rain.png", Temperature = "21℃" },
+                new WeatherHourly { Time = "12 AM", Icon = "pixel_clouds.png", Temperature = "19℃" },
+                new WeatherHourly { Time = "1 PM", Icon = "pixel_sun.png", Temperature = "18℃" },
+                new WeatherHourly { Time = "2 PM", Icon = "pixel_sun.png", Temperature = "17℃" },
+                new WeatherHourly { Time = "3 PM", Icon = "pixel_sun.png", Temperature = "16℃" },
+                new WeatherHourly { Time = "4 PM", Icon = "pixel_sun.png", Temperature = "16℃" },
+                new WeatherHourly { Time = "5 PM", Icon = "pixel_sun.png", Temperature = "17℃" },
+                new WeatherHourly { Time = "6 PM", Icon = "pixel_clouds.png", Temperature = "19℃" },
+                new WeatherHourly { Time = "7 PM", Icon = "pixel_cloud_rain.png", Temperature = "21℃" },
+                new WeatherHourly { Time = "8 PM", Icon = "pixel_cloud_rain.png", Temperature = "23℃" },
+                new WeatherHourly { Time = "9 PM", Icon = "pixel_clouds.png", Temperature = "25℃" },
+                new WeatherHourly { Time = "10 PM", Icon = "pixel_cloud_rain.png", Temperature = "19℃" },
+                new WeatherHourly { Time = "11 PM", Icon = "pixel_cloud_rain.png", Temperature = "21℃" },
+                new WeatherHourly { Time = "12 PM", Icon = "pixel_cloud_rain.png", Temperature = "23℃" }
             };
 
             BindingContext = this;

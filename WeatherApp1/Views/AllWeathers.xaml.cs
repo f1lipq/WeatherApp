@@ -27,7 +27,7 @@ public partial class AllWeathers : ContentPage
 
         WeathersAll = new ObservableCollection<AllWeathersData>
             {
-                new AllWeathersData { Location = "Krakow", Icon = "big_night_cloud_rain.png", Temperature = 19, HTemp = 21, LTemp = 15, TempInfo = "cloudy" },
+                new AllWeathersData { Location = "Krakow", Icon = "pixel_sun.png", Temperature = 19, HTemp = 21, LTemp = 15, TempInfo = "cloudy" },
                 new AllWeathersData { Location = "Tokyo", Icon = "big_tornado.png", Temperature = 18,HTemp = 21, LTemp = 15, TempInfo = "tornado"},
                 new AllWeathersData { Location = "Montreal", Icon = "big_day_cloud_rain1.png", Temperature = 17, HTemp = 24, LTemp = 15 },
                 new AllWeathersData { Location = "Barcelona", Icon = "big_tornado.png", Temperature = 16, HTemp = 18, LTemp = 15 },
