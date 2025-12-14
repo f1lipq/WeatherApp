@@ -21,6 +21,8 @@
                             FontSize="25"/>
                 </HorizontalStackLayout>
 
+
+                <!-- Weathers view -->
                 <CollectionView ItemsSource="{Binding WeathersAll}"
                                 HorizontalScrollBarVisibility="Never"
                                 HorizontalOptions="Center"
@@ -109,5 +111,20 @@
             </VerticalStackLayout>
 
         </ScrollView>
+
+
+        <Border Grid.Row="1" 
+              Padding="10"
+              HeightRequest="60"
+              WidthRequest="60"
+              HorizontalOptions="End"
+              Margin="0, 0, 30, 20"
+              BackgroundColor="#DD48319D">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20"/>
+            </Border.StrokeShape>
+            <Entry Placeholder="Search for a city..." 
+               FontFamily="PixelFont"/>
+        </Border>
     </Grid>
 </ContentPage>
