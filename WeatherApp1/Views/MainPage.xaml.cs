@@ -5,9 +5,10 @@ using System.Collections.ObjectModel;
 
 namespace WeatherApp1.Views
 {
+
     public partial class MainPage : ContentPage
     {
-        public class WeatherHourly
+		public class WeatherHourly
         {
             public string Time { get; set; }
             public string Icon { get; set; }
@@ -30,7 +31,7 @@ namespace WeatherApp1.Views
         {
             InitializeComponent();
 
-            HourlyWeather = new ObservableCollection<WeatherHourly>
+			HourlyWeather = new ObservableCollection<WeatherHourly>
             {
                 new WeatherHourly { Time = "1 AM", Icon = "pixel_moon.png", Temperature = "18℃" },
                 new WeatherHourly { Time = "2 AM", Icon = "pixel_moon.png", Temperature = "17℃" },

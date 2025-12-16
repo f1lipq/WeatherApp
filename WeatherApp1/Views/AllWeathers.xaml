@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp1.Views.AllWeathers"
-             BackgroundColor="#1F1D47"
+             BackgroundColor="#242424"
              Title=""
              Shell.NavBarIsVisible="False">
 
@@ -35,9 +35,9 @@
                         <DataTemplate>
                             <Border HeightRequest="150"
                                     WidthRequest="350"
-                                    Stroke="#1F1D47"
+                                    Stroke="Transparent"
                                     StrokeThickness="3"
-                                    BackgroundColor="#48319D"
+                                    BackgroundColor="#463c6b"
                                     HorizontalOptions="Center">
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="40"/>
@@ -119,7 +119,7 @@
               WidthRequest="350"
               HorizontalOptions="Center"
                 Margin="0, 0, 0, 20"
-              BackgroundColor="#DD48319D">
+              BackgroundColor="#DD463c6b">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="20"/>
             </Border.StrokeShape>
