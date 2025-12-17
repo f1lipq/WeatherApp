@@ -1,6 +1,11 @@
 # Weather App project
+![Project icon](WeatherApp1/Resources/Images/README_Images/appiconreadme.svg)
 
 ## App is still in progress...
+
+## Current Images (17.12.2025)
+![Home Page](WeatherApp1/Resources/Images/README_Images/homepageview.png)
+
 
 
 ### Figma design source:
