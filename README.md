@@ -1,5 +1,5 @@
 # Weather App project
-<img src="WeatherApp1/Resources/AppIcon/appicon.svg" width="50" height="50" />
+<img src="WeatherApp1/Resources/AppIcon/appicon.svg" width="100" height="100" />
 
 ## App is still in progress...
 
