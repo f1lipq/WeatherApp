@@ -23,6 +23,23 @@ namespace WeatherApp1.Views
             public int LTemp { get; set; }
 		}
 
+        public class TimeCheck
+        {
+            public int hour = DateTime.Now.Hour;
+
+            public bool CheckTime()
+            {
+                if (hour > 6 && hour < 18)
+                {
+                    return true;
+                } else 
+                {
+                    return false;
+                }
+            }
+
+		}
+
 		private async void GoToAllWeathers(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync(nameof(AllWeathers));
@@ -39,6 +56,8 @@ namespace WeatherApp1.Views
         public MainPage()
         {
             InitializeComponent();
+
+            
 
 			HourlyWeather = new ObservableCollection<WeatherHourly>
             {
@@ -85,6 +104,47 @@ namespace WeatherApp1.Views
 
             BindingContext = this;
 
-        }
+			TimeCheck timeCheck = new TimeCheck();
+
+            string backgroundColorD = "#1a5f8a";
+
+			if (timeCheck.CheckTime())
+			{
+				BackgroundImageSource = "day_background.png";
+
+                FullBorder.Background = new LinearGradientBrush (
+							new GradientStopCollection
+		{
+			new GradientStop(Color.FromArgb("#E64598cc"), 0),
+			new GradientStop(Color.FromArgb("#E6153142"), 1)
+		},
+		new Point(0, 0),
+		new Point(1, 1)
+	);
+
+				HourlyBox.BackgroundColor = Color.FromArgb(backgroundColorD);
+                WeeklyBox.BackgroundColor = Color.FromArgb(backgroundColorD);
+                AirQualityBox.BackgroundColor = Color.FromArgb(backgroundColorD);
+                Box1.BackgroundColor = Color.FromArgb(backgroundColorD);
+				Box2.BackgroundColor = Color.FromArgb(backgroundColorD);
+				Box3.BackgroundColor = Color.FromArgb(backgroundColorD);
+				Box4.BackgroundColor = Color.FromArgb(backgroundColorD);
+			}
+			else
+			{
+				BackgroundImageSource = "backgroundimage.png";
+
+				FullBorder.Background = new LinearGradientBrush(
+			    new GradientStopCollection
+                {
+			    new GradientStop(Color.FromArgb("#E695ABD9"), 0),
+			    new GradientStop(Color.FromArgb("#E61F1D47"), 1)
+                },
+                new Point(0, 0),
+                new Point(1, 1)
+                );
+			}
+
+		}
     }
 }

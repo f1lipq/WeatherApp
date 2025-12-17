@@ -18,7 +18,7 @@
 
                 <VerticalStackLayout Padding="30, 0">
                     <HorizontalStackLayout HorizontalOptions="Center">
-                        <Label Text="Montreal" FontFamily="PixelFont" TextColor="White" FontSize="40"/>
+                        <Label x:Name="City" Text="Montreal" FontFamily="PixelFont" TextColor="White" FontSize="40"/>
                     </HorizontalStackLayout>
                     <HorizontalStackLayout HorizontalOptions="Center">
                         <Label Text="19℃" TextColor="White" FontSize="40" FontFamily="PixelFont"/>
@@ -38,7 +38,8 @@
                 <Border StrokeThickness="4"
                         Stroke="#E61F1D47"
                         Padding="20"
-                        Margin="0, -70, 0, 0">
+                        Margin="0, -70, 0, 0"
+                        x:Name="FullBorder">
 
                     <Border.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -76,11 +77,13 @@
                         <Grid RowDefinitions="*, *" RowSpacing="20"
                               Padding="0">
                             <Border
+                                x:Name="HourlyBox"
                                 Grid.Row="0"
                                 StrokeThickness="0"
                                 StrokeShape="RoundRectangle 40"
                                 BackgroundColor="#1F1D47"
-                                Padding="20, 10, 0, 10">
+                                Padding="20, 10, 0, 10"
+                                >
 
                                 <VerticalStackLayout>
                                     <HorizontalStackLayout>
@@ -151,6 +154,7 @@
                                 StrokeShape="RoundRectangle 40"
                                 BackgroundColor="#1F1D47"
                                 Padding="20, 10, 0, 10"
+                                x:Name="WeeklyBox"
                                 >
                                 <VerticalStackLayout>
                                     <HorizontalStackLayout>
@@ -236,7 +240,8 @@
                             <Border BackgroundColor="#1F1D47"
                                     StrokeThickness="0"
                                     Padding="20"
-                                    Margin="0, 0, 0, 0">
+                                    Margin="0, 0, 0, 0"
+                                    x:Name="AirQualityBox">
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="20"/>
                                 </Border.StrokeShape>
@@ -288,7 +293,8 @@
                                         Grid.Row="0"
                                         BackgroundColor="#1F1D47"
                                         StrokeThickness="0"
-                                        Padding="15">
+                                        Padding="15"
+                                        x:Name="Box1">
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="20"/>
                                     </Border.StrokeShape>
@@ -323,7 +329,8 @@
                                         Grid.Row="1"
                                         BackgroundColor="#1F1D47"
                                         StrokeThickness="0"
-                                        Padding="15">
+                                        Padding="15"
+                                        x:Name="Box2">
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="20"/>
                                     </Border.StrokeShape>
@@ -359,7 +366,8 @@
                                         Grid.Row="0"
                                         BackgroundColor="#1F1D47"
                                         StrokeThickness="0"
-                                        Padding="15">
+                                        Padding="15"
+                                        x:Name="Box3">
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="20"/>
                                     </Border.StrokeShape>
@@ -395,7 +403,8 @@
                                         Grid.Row="1"
                                         BackgroundColor="#1F1D47"
                                         StrokeThickness="0"
-                                        Padding="15">
+                                        Padding="15"
+                                        x:Name="Box4">
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="20"/>
                                     </Border.StrokeShape>
