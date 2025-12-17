@@ -1,5 +1,5 @@
 # Weather App project
-![Project icon](WeatherApp1/Resources/Images/README_Images/appiconreadme.svg)
+<img src="WeatherApp1/Resources/AppIcon/appicon.svg" width="50" height="50" />
 
 ## App is still in progress...
 
