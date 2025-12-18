@@ -285,7 +285,7 @@
                             <!-- Pierwszy kafelek -->
 
                             <Grid ColumnDefinitions="*, *"
-                                  RowDefinitions="*, *"
+                                  RowDefinitions="*, *, *"
                                   ColumnSpacing="15"
                                   RowSpacing="15">
 
@@ -325,12 +325,12 @@
 
                                 <!-- Drugi kafelek -->
 
-                                <Border Grid.Column="0"
-                                        Grid.Row="1"
+                                <Border Grid.Column="1"
+                                        Grid.Row="0"
                                         BackgroundColor="#1F1D47"
                                         StrokeThickness="0"
                                         Padding="15"
-                                        x:Name="Box2">
+                                        x:Name="Box3">
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="20"/>
                                     </Border.StrokeShape>
@@ -362,38 +362,44 @@
 
                                 <!-- Trzeci kafelek -->
 
-                                <Border Grid.Column="1"
-                                        Grid.Row="0"
+                                <Border Grid.Column="0"
+                                        Grid.Row="1"
                                         BackgroundColor="#1F1D47"
                                         StrokeThickness="0"
                                         Padding="15"
-                                        x:Name="Box3">
+                                        x:Name="Box2">
                                     <Border.StrokeShape>
-                                        <RoundRectangle CornerRadius="20"/>
+                                        <RoundRectangle CornerRadius="100"/>
                                     </Border.StrokeShape>
 
+
                                     <VerticalStackLayout Spacing="8">
-                                        <Label Text="WIND" 
+                                        <Label Text="💨  WIND" 
+                                               Grid.Row="0"
                                                TextColor="#9B8BC4"
                                                FontSize="11"
-                                               FontFamily="PixelFont"/>
+                                               FontFamily="PixelFont"
+                                               HorizontalTextAlignment="Center"/>
 
-                                        <Label Text="5:28" 
+                                        <Label Text="2 m/s" 
                                                TextColor="White"
                                                FontSize="42"
                                                FontFamily="PixelFont"/>
 
-
-                                        <ProgressBar Progress="0.4" 
-                                                     ProgressColor="#4A90E2"
-                                                     BackgroundColor="#5A4B8A"
-                                                     HeightRequest="6"
-                                                     Margin="0,8,0,0"/>
-
-                                        <Label Text="Sunset: 7:25PM" 
+                                        <HorizontalStackLayout HorizontalOptions="Center">
+                                            <Label Text="East" 
                                                TextColor="White"
-                                               FontSize="16"
+                                               FontSize="20"
+                                               HorizontalTextAlignment="Center"
+                                                   VerticalTextAlignment="Center"
                                                FontFamily="PixelFont"/>
+                                            <Image Source="arrow_right.png"
+                                               HeightRequest="30"
+                                               WidthRequest="50"/>
+
+                                        </HorizontalStackLayout>
+
+
                                     </VerticalStackLayout>
                                 </Border>
 
@@ -410,29 +416,128 @@
                                     </Border.StrokeShape>
 
                                     <VerticalStackLayout Spacing="8">
-                                        <Label Text="☀️ SUNRISE" 
+                                        <Label Text="🌧️ RAINFALL" 
                                                TextColor="#9B8BC4"
                                                FontSize="11"
                                                FontFamily="PixelFont"/>
-
-                                        <Label Text="5:28" 
+                                        <HorizontalStackLayout>
+                                            <Label Text="&lt;0,03" 
                                                TextColor="White"
-                                               FontSize="42"
+                                               FontSize="30"
                                                FontFamily="PixelFont"/>
+                                        <Label Text="cm" 
+                                               TextColor="White"
+                                               FontSize="15"
+                                               FontFamily="PixelFont"
+                                               HorizontalTextAlignment="End"/>
+                                        </HorizontalStackLayout>
 
 
-                                        <ProgressBar Progress="0.4" 
-                                                     ProgressColor="#4A90E2"
-                                                     BackgroundColor="#5A4B8A"
-                                                     HeightRequest="6"
-                                                     Margin="0,8,0,0"/>
-
-                                        <Label Text="Sunset: 7:25PM" 
+                                        <Label Text="Daily rainfall total" 
                                                TextColor="White"
                                                FontSize="16"
                                                FontFamily="PixelFont"/>
                                     </VerticalStackLayout>
                                 </Border>
+                                <!-- Piąty kafelek -->
+
+                                <Border Grid.Column="0"
+                                        Grid.Row="2"
+                                        BackgroundColor="#1F1D47"
+                                        StrokeThickness="0"
+                                        Padding="15"
+                                        x:Name="Box5">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="20"/>
+                                    </Border.StrokeShape>
+
+
+                                    <VerticalStackLayout Spacing="8">
+                                        <Label Text="💧 HUMIDITY" 
+                                               Grid.Row="0"
+                                               TextColor="#9B8BC4"
+                                               FontSize="11"
+                                               FontFamily="PixelFont"/>
+
+                                        <Label Text="75%" 
+                                               TextColor="White"
+                                               FontSize="42"
+                                               FontFamily="PixelFont"/>
+                                        <HorizontalStackLayout>
+                                            <Border
+                                        VerticalOptions="Center"
+                                                HorizontalOptions="Center"
+                                        BackgroundColor="#b285d4"
+                                        StrokeThickness="0"
+                                        x:Name="CelsiusMiniBox1"
+                                                Padding="3">
+                                                <Border.StrokeShape>
+                                                    <RoundRectangle CornerRadius="100"/>
+                                                </Border.StrokeShape>
+
+                                                <Label Text="2°" 
+                                                   TextColor="White"
+                                                   FontSize="15"
+                                                      
+                                                   HorizontalTextAlignment="Center"
+                                                       VerticalTextAlignment="Center"
+                                                   FontFamily="PixelFont"/>
+                                            </Border>
+                                            <Label Text="Dew point" 
+                                                   TextColor="White"
+                                                   FontSize="15"
+                                                   Margin="10, 0, 0, 0"
+                                                   HorizontalTextAlignment="Center"
+                                                       VerticalTextAlignment="Center"
+                                                   FontFamily="PixelFont"/>
+                                        </HorizontalStackLayout>
+
+
+
+                                    </VerticalStackLayout>
+                                </Border>
+                                
+                                <!-- Szósty kafelek -->
+
+                                <Border Grid.Column="1"
+                                        Grid.Row="2"
+                                        BackgroundColor="#1F1D47"
+                                        StrokeThickness="0"
+                                        Padding="15"
+                                        x:Name="Box6">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="100"/>
+                                    </Border.StrokeShape>
+
+
+                                    <VerticalStackLayout Spacing="8">
+
+                                        <Label Text="PRESSURE" 
+                                               Grid.Row="0"
+                                               TextColor="#9B8BC4"
+                                               FontSize="11"
+                                               FontFamily="PixelFont"
+                                               HorizontalTextAlignment="Center"/>
+
+                                        <Label Text="1027" 
+                                               TextColor="White"
+                                               FontSize="42"
+                                               FontFamily="PixelFont"
+                                               HorizontalTextAlignment="Center"/>
+
+                                        <Label Text="hPa" 
+                                                   TextColor="White"
+                                                   FontSize="20"
+                                                   HorizontalTextAlignment="Center"
+                                                       VerticalTextAlignment="Center"
+                                                   FontFamily="PixelFont"/>
+
+
+
+                                    </VerticalStackLayout>
+                                </Border>
+
+
 
                             </Grid>
 
