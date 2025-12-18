@@ -1,131 +1,135 @@
-﻿using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Shapes;
-using Microsoft.Maui.Graphics;
+﻿using Microsoft.Maui.Controls.Shapes;
 using System.Collections.ObjectModel;
+using WeatherApp1.Services;
 
 namespace WeatherApp1.Views
 {
-
+    [QueryProperty(nameof(CityName), "city")]
     public partial class MainPage : ContentPage
     {
-		public class WeatherHourly
+        public string CityName
+        {
+            set => LoadWeatherData(value);
+        }
+
+        public class WeatherHourly
         {
             public string Time { get; set; }
             public string Icon { get; set; }
             public int Temperature { get; set; }
         }
 
-		public class WeatherWeekly
-		{
-			public string Date { get; set; }
-			public string Icon { get; set; }
-			public int HTemp { get; set; }
+        public class WeatherWeekly
+        {
+            public string Date { get; set; }
+            public string Icon { get; set; }
+            public int HTemp { get; set; }
             public int LTemp { get; set; }
-		}
+        }
 
         public class TimeCheck
         {
             public int hour = DateTime.Now.Hour;
-
-            public bool CheckTime()
-            {
-                if (hour > 6 && hour < 18)
-                {
-                    return true;
-                } else 
-                {
-                    return false;
-                }
-            }
-
-		}
-
-		private async void GoToAllWeathers(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync(nameof(AllWeathers));
+            public bool CheckTime() => hour > 6 && hour < 18;
         }
 
-        private async void GoToMainPage(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync(nameof(MainPage));
-        }
+        public ObservableCollection<WeatherHourly> HourlyWeather { get; set; } = new ObservableCollection<WeatherHourly>();
+        public ObservableCollection<WeatherWeekly> WeeklyWeather { get; set; } = new ObservableCollection<WeatherWeekly>();
 
+        private readonly WeatherService _weatherService = new WeatherService();
 
-        public ObservableCollection<WeatherHourly> HourlyWeather { get; set; }
-        public ObservableCollection<WeatherWeekly> WeeklyWeather { get; set; }
         public MainPage()
         {
             InitializeComponent();
-
-            
-
-			HourlyWeather = new ObservableCollection<WeatherHourly>
-            {
-                new WeatherHourly { Time = "1 AM", Icon = "pixel_moon.png", Temperature = 18 },
-                new WeatherHourly { Time = "2 AM", Icon = "pixel_moon.png", Temperature = 17 },
-                new WeatherHourly { Time = "3 AM", Icon = "pixel_moon.png", Temperature = 16 },
-                new WeatherHourly { Time = "4 AM", Icon = "pixel_moon.png", Temperature = 16 },
-                new WeatherHourly { Time = "5 AM", Icon = "pixel_moon.png", Temperature = 17 },
-                new WeatherHourly { Time = "6 AM", Icon = "pixel_cloud_rain.png", Temperature = 19 },
-                new WeatherHourly { Time = "7 AM", Icon = "pixel_cloud_rain.png", Temperature = 21 },
-                new WeatherHourly { Time = "8 AM", Icon = "pixel_cloud_rain.png", Temperature = 23 },
-                new WeatherHourly { Time = "9 AM", Icon = "pixel_clouds.png", Temperature = 25 },
-                new WeatherHourly { Time = "10 AM", Icon = "pixel_cloud_rain.png", Temperature = 19 },
-                new WeatherHourly { Time = "11 AM", Icon = "pixel_cloud_rain.png", Temperature = 21 },
-                new WeatherHourly { Time = "12 AM", Icon = "pixel_clouds.png", Temperature = 19 },
-                new WeatherHourly { Time = "1 PM", Icon = "pixel_sun.png", Temperature = 18 },
-                new WeatherHourly { Time = "2 PM", Icon = "pixel_sun.png", Temperature = 17 },
-                new WeatherHourly { Time = "3 PM", Icon = "pixel_sun.png", Temperature = 16 },
-                new WeatherHourly { Time = "4 PM", Icon = "pixel_sun.png", Temperature = 16 },
-                new WeatherHourly { Time = "5 PM", Icon = "pixel_sun.png", Temperature = 17 },
-                new WeatherHourly { Time = "6 PM", Icon = "pixel_clouds.png", Temperature = 19 },
-                new WeatherHourly { Time = "7 PM", Icon = "pixel_cloud_rain.png", Temperature = 21 },
-                new WeatherHourly { Time = "8 PM", Icon = "pixel_cloud_rain.png", Temperature = 23 },
-                new WeatherHourly { Time = "9 PM", Icon = "pixel_clouds.png", Temperature = 25 },
-                new WeatherHourly { Time = "10 PM", Icon = "pixel_cloud_rain.png", Temperature = 19 },
-                new WeatherHourly { Time = "11 PM", Icon = "pixel_cloud_rain.png", Temperature = 21 },
-                new WeatherHourly { Time = "12 PM", Icon = "pixel_cloud_rain.png", Temperature = 23 }
-            };
-
-            WeeklyWeather = new ObservableCollection<WeatherWeekly>
-            {
-                new WeatherWeekly { Date = "10.12", Icon = "pixel_clouds.png", HTemp = 22, LTemp = 18 },
-                new WeatherWeekly { Date = "11.12", Icon = "pixel_sun.png", HTemp = 18, LTemp = 11 },
-				new WeatherWeekly { Date = "13.12", Icon = "pixel_clouds.png", HTemp = 22, LTemp = 18 },
-				new WeatherWeekly { Date = "14.12", Icon = "pixel_sun.png", HTemp = 18, LTemp = 11 },
-				new WeatherWeekly { Date = "15.12", Icon = "pixel_clouds.png", HTemp = 22, LTemp = 18 },
-				new WeatherWeekly { Date = "16.12", Icon = "pixel_sun.png", HTemp = 18, LTemp = 11 },
-				new WeatherWeekly { Date = "15.12", Icon = "pixel_clouds.png", HTemp = 22, LTemp = 18 },
-				new WeatherWeekly { Date = "16.12", Icon = "pixel_sun.png", HTemp = 18, LTemp = 11 },
-				new WeatherWeekly { Date = "15.12", Icon = "pixel_clouds.png", HTemp = 22, LTemp = 18 },
-				new WeatherWeekly { Date = "17.12", Icon = "pixel_clouds.png", HTemp = 22, LTemp = 18 }
-
-			};
-
             BindingContext = this;
+            SetupTheme();
+        }
 
-			TimeCheck timeCheck = new TimeCheck();
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            if (City.Text == "Loading..." || City.Text == "Montreal") 
+            {
+               await LoadWeatherData("Krakow");
+            }
+        }
 
+        private async Task LoadWeatherData(string cityName)
+        {
+            var currentData = await _weatherService.GetCurrentWeather(cityName);
+            if (currentData != null)
+            {
+                City.Text = currentData.name;
+                MainTempLabel.Text = $"{(int)currentData.main.temp}℃";
+                MainConditionLabel.Text = currentData.weather[0].description;
+                MaxTempLabel.Text = $"H:{(int)currentData.main.temp_max}℃";
+                MinTempLabel.Text = $"L:{(int)currentData.main.temp_min}℃";
+
+                PressureLabel.Text = $"{currentData.main.pressure}";
+                WindLabel.Text = $"{currentData.wind.speed}";
+                HumidityLabel.Text = $"{currentData.main.humidity}";
+                
+                var sunriseTime = DateTimeOffset.FromUnixTimeSeconds(currentData.sys.sunrise).ToLocalTime();
+                var sunsetTime = DateTimeOffset.FromUnixTimeSeconds(currentData.sys.sunset).ToLocalTime();
+                
+                SunriseLabel.Text = sunriseTime.ToString("HH:mm");
+                SunsetLabel.Text = $"Sunset: {sunsetTime.ToString("HH:mm")}";
+            }
+
+            var forecastData = await _weatherService.GetForecast(cityName);
+            if (forecastData != null)
+            {
+                HourlyWeather.Clear();
+                WeeklyWeather.Clear();
+
+                foreach (var item in forecastData.list.Take(8))
+                {
+                    var time = DateTime.Parse(item.dt_txt).ToString("HH:mm");
+                    HourlyWeather.Add(new WeatherHourly
+                    {
+                        Time = time,
+                        Temperature = (int)item.main.temp,
+                        Icon = WeatherService.GetIconForCondition(item.weather[0].icon)
+                    });
+                }
+
+                var dailyGroups = forecastData.list.GroupBy(x => DateTime.Parse(x.dt_txt).Date);
+                foreach (var group in dailyGroups.Skip(1))
+                {
+                    var maxTemp = group.Max(x => x.main.temp);
+                    var minTemp = group.Min(x => x.main.temp);
+                    var iconCode = group.First().weather[0].icon;
+
+                    WeeklyWeather.Add(new WeatherWeekly
+                    {
+                        Date = group.Key.ToString("dd.MM"),
+                        HTemp = (int)maxTemp,
+                        LTemp = (int)minTemp,
+                        Icon = WeatherService.GetIconForCondition(iconCode)
+                    });
+                }
+            }
+        }
+
+        private void SetupTheme()
+        {
+            TimeCheck timeCheck = new TimeCheck();
             string backgroundColorD = "#1a5f8a";
 
-			if (timeCheck.CheckTime())
-			{
-				BackgroundImageSource = "day_background.png";
+            if (timeCheck.CheckTime())
+            {
+                BackgroundImageSource = "day_background.png";
+                FullBorder.Background = new LinearGradientBrush(
+                    new GradientStopCollection {
+                        new GradientStop(Color.FromArgb("#E64598cc"), 0),
+                        new GradientStop(Color.FromArgb("#E6153142"), 1)
+                    }, new Point(0, 0), new Point(1, 1));
 
-                FullBorder.Background = new LinearGradientBrush (
-							new GradientStopCollection
-		{
-			new GradientStop(Color.FromArgb("#E64598cc"), 0),
-			new GradientStop(Color.FromArgb("#E6153142"), 1)
-		},
-		new Point(0, 0),
-		new Point(1, 1)
-	);
-
-				HourlyBox.BackgroundColor = Color.FromArgb(backgroundColorD);
+                HourlyBox.BackgroundColor = Color.FromArgb(backgroundColorD);
                 WeeklyBox.BackgroundColor = Color.FromArgb(backgroundColorD);
                 AirQualityBox.BackgroundColor = Color.FromArgb(backgroundColorD);
                 Box1.BackgroundColor = Color.FromArgb(backgroundColorD);
+<<<<<<< Updated upstream
 				Box2.BackgroundColor = Color.FromArgb(backgroundColorD);
 				Box3.BackgroundColor = Color.FromArgb(backgroundColorD);
 				Box4.BackgroundColor = Color.FromArgb(backgroundColorD);
@@ -135,18 +139,26 @@ namespace WeatherApp1.Views
 			else
 			{
 				BackgroundImageSource = "backgroundimage.png";
+=======
+                Box2.BackgroundColor = Color.FromArgb(backgroundColorD);
+                Box3.BackgroundColor = Color.FromArgb(backgroundColorD);
+                Box4.BackgroundColor = Color.FromArgb(backgroundColorD);
+            }
+            else
+            {
+                BackgroundImageSource = "backgroundimage.png";
+                FullBorder.Background = new LinearGradientBrush(
+                    new GradientStopCollection {
+                        new GradientStop(Color.FromArgb("#E695ABD9"), 0),
+                        new GradientStop(Color.FromArgb("#E61F1D47"), 1)
+                    }, new Point(0, 0), new Point(1, 1));
+            }
+        }
+>>>>>>> Stashed changes
 
-				FullBorder.Background = new LinearGradientBrush(
-			    new GradientStopCollection
-                {
-			    new GradientStop(Color.FromArgb("#E695ABD9"), 0),
-			    new GradientStop(Color.FromArgb("#E61F1D47"), 1)
-                },
-                new Point(0, 0),
-                new Point(1, 1)
-                );
-			}
-
-		}
+        private async void GoToAllWeathers(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(AllWeathers));
+        }
     }
 }
