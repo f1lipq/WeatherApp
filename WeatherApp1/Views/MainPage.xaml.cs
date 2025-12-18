@@ -129,6 +129,8 @@ namespace WeatherApp1.Views
 				Box2.BackgroundColor = Color.FromArgb(backgroundColorD);
 				Box3.BackgroundColor = Color.FromArgb(backgroundColorD);
 				Box4.BackgroundColor = Color.FromArgb(backgroundColorD);
+                Box5.BackgroundColor = Color.FromArgb(backgroundColorD);
+                Box6.BackgroundColor = Color.FromArgb(backgroundColorD);
 			}
 			else
 			{
