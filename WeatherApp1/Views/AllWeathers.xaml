@@ -7,10 +7,7 @@
              Shell.NavBarIsVisible="False">
 
     <Grid RowDefinitions="*, auto">
-        <ScrollView Grid.Row="0" 
-            Grid.RowSpan="2"
-            Padding="0, 0, 0, 100">
-
+        <ScrollView Grid.Row="0" Grid.RowSpan="2" Padding="0, 0, 0, 100">
             <VerticalStackLayout Spacing="25" Margin="0, 10, 0, 0">
                 <HorizontalStackLayout VerticalOptions="Center" Margin="20, 0, 0, 0">
                     <Button Text="&lt; Weathers"
@@ -21,8 +18,6 @@
                             FontSize="25"/>
                 </HorizontalStackLayout>
 
-
-                <!-- Weathers view -->
                 <CollectionView ItemsSource="{Binding WeathersAll}"
                                 HorizontalScrollBarVisibility="Never"
                                 HorizontalOptions="Center"
@@ -33,99 +28,40 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Border HeightRequest="150"
-                                    WidthRequest="350"
-                                    Stroke="Transparent"
-                                    StrokeThickness="3"
-                                    BackgroundColor="#463c6b"
-                                    HorizontalOptions="Center">
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="40"/>
-                                </Border.StrokeShape>
-
-                                <Grid ColumnDefinitions="175, 175" HorizontalOptions="Center"
-                                      ColumnSpacing="-20">
-                                    <!-- Lewa kolumna - temperatura i lokalizacja -->
-                                    <VerticalStackLayout Grid.Column="0" 
-                                                         VerticalOptions="Center"
-                                                         HorizontalOptions="Center"
-                                                         Spacing="0">
+                            <Border HeightRequest="150" WidthRequest="350" Stroke="Transparent" StrokeThickness="3" BackgroundColor="#463c6b" HorizontalOptions="Center">
+                                <Border.StrokeShape><RoundRectangle CornerRadius="40"/></Border.StrokeShape>
+                                <Grid ColumnDefinitions="175, 175" HorizontalOptions="Center" ColumnSpacing="-20">
+                                    <VerticalStackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Spacing="0">
                                         <HorizontalStackLayout HorizontalOptions="Center">
-                                            <Label Text="{Binding Temperature}" 
-                                                   HorizontalTextAlignment="Center"
-                                                   FontSize="60"
-                                                   TextColor="White"
-                                                   FontFamily="PixelFont"
-                                                   Margin="0"/>
-                                            <Image Source="mini_celsius_white.png"
-                                                   Margin="0, 10, 0, 0"
-                                                   VerticalOptions="Start"
-                                                   HeightRequest="20"
-                                                   WidthRequest="20"/>
+                                            <Label Text="{Binding Temperature}" HorizontalTextAlignment="Center" FontSize="60" TextColor="White" FontFamily="PixelFont" Margin="0"/>
+                                            <Image Source="mini_celsius_white.png" Margin="0, 10, 0, 0" VerticalOptions="Start" HeightRequest="20" WidthRequest="20"/>
                                         </HorizontalStackLayout>
-
                                         <HorizontalStackLayout HorizontalOptions="Center" Margin="0, -10, 0, 5">
-                                            <Label Text="{Binding HTemp, StringFormat='H: {0}'}"
-                                                   TextColor="Grey"
-                                                   FontSize="15"
-                                                   FontFamily="PixelFont"/>
-                                            <Label Text="{Binding LTemp, StringFormat=' L: {0}'}"
-                                                   TextColor="Grey"
-                                                   FontSize="15"
-                                                   FontFamily="PixelFont"/>
+                                            <Label Text="{Binding HTemp, StringFormat='H: {0}'}" TextColor="Grey" FontSize="15" FontFamily="PixelFont"/>
+                                            <Label Text="{Binding LTemp, StringFormat=' L: {0}'}" TextColor="Grey" FontSize="15" FontFamily="PixelFont"/>
                                         </HorizontalStackLayout>
-
-                                        <Label Text="{Binding Location}" 
-                                               TextColor="White"
-                                               FontSize="15"
-                                               FontFamily="PixelFont"
-                                               HorizontalOptions="Center"
-                                               HorizontalTextAlignment="Center"/>
+                                        <Label Text="{Binding Location}" TextColor="White" FontSize="15" FontFamily="PixelFont" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                                     </VerticalStackLayout>
 
-                                    <!-- Prawa kolumna - ikona i opis -->
-                                    <VerticalStackLayout Grid.Column="1"
-                                                         VerticalOptions="Center"
-                                                         HorizontalOptions="Center"
-                                                         Spacing="5">
-                                        <Image Source="{Binding Icon}" 
-                                               HeightRequest="100" 
-                                               WidthRequest="100"
-                                               HorizontalOptions="Center"
-                                               VerticalOptions="Center"/>
-                                        <Label Text="{Binding TempInfo}"
-                                               TextColor="White"
-                                               FontFamily="PixelFont"
-                                               FontSize="15"
-                                               HorizontalTextAlignment="Center"
-                                               LineBreakMode="WordWrap"
-                                               WidthRequest="150"
-                                               HorizontalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" Spacing="5">
+                                        <Image Source="{Binding Icon}" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        <Label Text="{Binding TempInfo}" TextColor="White" FontFamily="PixelFont" FontSize="15" HorizontalTextAlignment="Center" LineBreakMode="WordWrap" WidthRequest="150" HorizontalOptions="Center"/>
                                     </VerticalStackLayout>
                                 </Grid>
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-
             </VerticalStackLayout>
-
         </ScrollView>
 
-
-        <Border Grid.Row="1" 
-              Padding="10"
-              HeightRequest="60"
-              WidthRequest="350"
-              HorizontalOptions="Center"
-                Margin="0, 0, 0, 20"
-              BackgroundColor="#DD463c6b">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="20"/>
-            </Border.StrokeShape>
+        <Border Grid.Row="1" Padding="10" HeightRequest="60" WidthRequest="350" HorizontalOptions="Center" Margin="0, 0, 0, 20" BackgroundColor="#DD463c6b">
+            <Border.StrokeShape><RoundRectangle CornerRadius="20"/></Border.StrokeShape>
             <Entry Placeholder="Search for a city..." 
                FontFamily="PixelFont"
-               x:Name="CityName"/>
+               x:Name="CityName"
+               ReturnCommand="{Binding SearchCommand}" 
+               Completed="SearchCity" />
         </Border>
     </Grid>
 </ContentPage>

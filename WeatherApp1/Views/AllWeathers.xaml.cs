@@ -1,50 +1,71 @@
 ﻿using System.Collections.ObjectModel;
-using static WeatherApp1.Views.MainPage;
+using WeatherApp1.Services;
 
 namespace WeatherApp1.Views;
 
 public partial class AllWeathers : ContentPage
 {
-
     public class AllWeathersData
     {
         public string Location { get; set; }
         public string Icon { get; set; }
         public int Temperature { get; set; }
-
         public int HTemp { get; set; }
-
         public int LTemp { get; set; }
-        
         public string TempInfo { get; set; }
     }
 
-    public ObservableCollection<AllWeathersData> WeathersAll { get; set; }
+    public ObservableCollection<AllWeathersData> WeathersAll { get; set; } = new ObservableCollection<AllWeathersData>();
+    private readonly WeatherService _weatherService = new WeatherService();
+    private readonly List<string> _citiesToCheck = new List<string> 
+    { 
+        "Krakow", "Tokyo", "Montreal", "Barcelona", "London", 
+        "Paris", "Warsaw", "Berlin", "Lisbon", "Rome" 
+    };
 
     public AllWeathers()
-	{
-		InitializeComponent();
-
-        WeathersAll = new ObservableCollection<AllWeathersData>
-            {
-                new AllWeathersData { Location = "Krakow", Icon = "pixel_sun.png", Temperature = 19, HTemp = 21, LTemp = 15, TempInfo = "cloudy" },
-                new AllWeathersData { Location = "Tokyo", Icon = "pixel_sun.png", Temperature = 18,HTemp = 21, LTemp = 15, TempInfo = "tornado"},
-                new AllWeathersData { Location = "Montreal", Icon = "pixel_clouds.png", Temperature = 17, HTemp = 24, LTemp = 15 },
-                new AllWeathersData { Location = "Barcelona", Icon = "pixel_cloud_rain.png", Temperature = 16, HTemp = 18, LTemp = 15 },
-                new AllWeathersData { Location = "London", Icon = "pixel_moon.png", Temperature = 16, HTemp = 20, LTemp = 11 },
-                new AllWeathersData { Location = "Paris, France", Icon = "pixel_moon.png", Temperature = 17, HTemp = 26, LTemp = 17 },
-                new AllWeathersData { Location = "Warsaw, Poland", Icon = "pixel_clouds.png", Temperature = 19, HTemp = 21, LTemp = 14 },
-                new AllWeathersData { Location = "Berlin, Germany", Icon = "pixel_moon.png", Temperature = 21, HTemp = 28, LTemp = 20 },
-                new AllWeathersData { Location = "Lizbona, Portugal", Icon = "pixel_sun.png", Temperature = 23, HTemp = 25, LTemp = 22 },
-                new AllWeathersData { Location = "Rome, Italy", Icon = "pixel_sun.png", Temperature = 25, HTemp = 27, LTemp = 18}
-            };
-
+    {
+        InitializeComponent();
         BindingContext = this;
     }
 
-    private async void GoToAllWeathers(object sender, EventArgs e)
+    protected override async void OnAppearing()
     {
-        await Shell.Current.GoToAsync(nameof(AllWeathers));
+        base.OnAppearing();
+        if (WeathersAll.Count == 0)
+        {
+            await LoadAllCities();
+        }
+    }
+
+    private async Task LoadAllCities()
+    {
+        foreach (var city in _citiesToCheck)
+        {
+            var data = await _weatherService.GetCurrentWeather(city);
+            if (data != null)
+            {
+                WeathersAll.Add(new AllWeathersData
+                {
+                    Location = data.name,
+                    Temperature = (int)data.main.temp,
+                    HTemp = (int)data.main.temp_max,
+                    LTemp = (int)data.main.temp_min,
+                    TempInfo = data.weather[0].description,
+                    Icon = WeatherService.GetIconForCondition(data.weather[0].icon)
+                });
+            }
+        }
+    }
+
+    private async void SearchCity(object sender, EventArgs e)
+    {
+        string cityName = CityName.Text;
+        if (!string.IsNullOrWhiteSpace(cityName))
+        {
+            await Shell.Current.GoToAsync($"///MainPage?city={cityName}");
+            CityName.Text = string.Empty;
+        }
     }
 
     private async void GoToMainPage(object sender, EventArgs e)
