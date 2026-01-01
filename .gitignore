@@ -426,3 +426,8 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+
+# MacOS files etc.
+.idea/
+.DS_Store
